@@ -100,16 +100,16 @@ void setup()
     delay(500);
     Serial.print(".");
   }
-  WiFi.hostname("PixelFrame");
+  WiFi.hostname("pixelframe");
   Serial.println("WiFi connected");
-  Serial.println(WiFi.localIP());
 
-  if (!MDNS.begin("pixelframe"))
-  { // Start the mDNS responder for pixelframe.local
-    Serial.println("Error setting up MDNS responder!");
+  if (!MDNS.begin("pixelframe")) {
+      Serial.println("Error setting up MDNS responder!");
+  } else {
+      Serial.println("mDNS responder started");
   }
 
-  Serial.println("mDNS responder started");
+  Serial.println(WiFi.localIP());
 
   server.on(
       "/handleFileUpload", handleFileUpload);
@@ -117,11 +117,18 @@ void setup()
 
   server.begin();
   Serial.println("Web Server started");
+
+  // Add service to MDNS-SD
+  MDNS.addService("http", "tcp", 80);
+
+  while (!Serial)  // Wait for the serial connection to be established.
+    delay(50);
 }
 
 void loop()
 {
-  server.handleClient();
+    MDNS.update();
+    server.handleClient();
 }
 uint16_t bytes[1280];
 void handleFileUpload()
