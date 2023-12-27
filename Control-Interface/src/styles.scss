@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  font-size: 20pt;
+  background-color: black;
+}
+
+h1 {
+  color: white;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hidden {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.canvas {
+}
+
+.button {
+  margin: 5px;
+  padding: 2vw;
+  font-size: 15pt;
+  user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 7px;
+  border: 1px solid white;
+  color: white;
+}
+
+.upload-button {
+  background-color: #00ff00;
+}
+
+.random-button {
+  background-color: red;
+}

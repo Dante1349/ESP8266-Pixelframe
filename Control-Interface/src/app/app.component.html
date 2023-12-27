@@ -1,0 +1,12 @@
+<div class="main">
+  <h1>PixelFrame</h1>
+  <input class="hidden" id="upload-button"
+         type="file"
+         multiple accept="image/*"
+         (change)="handleFileInput($event)"/>
+  <div>
+    <label class="random-button button" (click)="randomImage()">Random</label>
+    <label class="upload-button button" for="upload-button">Choose</label>
+  </div>
+  <canvas class="canvas hidden" #canvas></canvas>
+</div>
